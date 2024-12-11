@@ -31,31 +31,39 @@ st.markdown(f"""
 ##### December 2024
 """)
 
+#
+# # Function to web-scrab Vanderlande Logo
+# def vanderlande_logo_adder():
+#
+#     # Try to retrieve Vanderlande Logo 3 times
+#     counter = 3
+#
+#     # URL of the image
+#     url = "https://upload.wikimedia.org/wikipedia/commons/d/da/Logo_Vanderlande.jpg"
+#
+#     while counter > 0:
+#         # Fetch the image
+#         response = requests.get(url)
+#
+#         # Check if the request was successful
+#         if response.status_code == 200:
+#             break
+#         else:
+#             counter -= 1
+#     return st.image(response.content) if counter != 0 else st.error("Failed to load Vanderlande Logo.")
+#
+#
+# # Function to add Vanderlande Logo from web-scrabbing
+# vanderlande_logo_adder()
 
-# Function to web-scrab Vanderlande Logo
-def vanderlande_logo_adder():
+# Get the directory of the current script (Python file)
+script_dir = os.getcwd()
 
-    # Try to retrieve Vanderlande Logo 3 times
-    counter = 3
+# Set the path to the logo file located in the same directory as the Python file
+file_path_logo = os.path.join(script_dir, 'vanderlande_logo.JPG')
 
-    # URL of the image
-    url = "https://upload.wikimedia.org/wikipedia/commons/d/da/Logo_Vanderlande.jpg"
-
-    while counter > 0:
-        # Fetch the image
-        response = requests.get(url)
-
-        # Check if the request was successful
-        if response.status_code == 200:
-            break
-        else:
-            counter -= 1
-    return st.image(response.content) if counter != 0 else st.error("Failed to load Vanderlande Logo.")
-
-
-# Add Vanderlande Logo
-vanderlande_logo_adder()
-
+# Add Vanderlande Logo from local source
+st.image(file_path_logo)
 
 # Introduction
 st.markdown(f""" ### Introduction""")
@@ -63,8 +71,6 @@ st.markdown(f""" ### Introduction""")
 # Load the data
 st.markdown(f""" #### Read in the data""")
 
-# Get the directory of the current script (Python file)
-script_dir = os.getcwd()
 
 # Set the path to the CSV file located in the same directory as the Python file
 file_path = os.path.join(script_dir, 'Xray_Scan_Data_Jul_2022.csv')
