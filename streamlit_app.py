@@ -28,7 +28,6 @@ warnings.filterwarnings("ignore")
 # Display Author info
 st.markdown(f"""
 ### Cem Saydam
-##### December 2024
 """)
 
 #
@@ -111,72 +110,6 @@ for column, percentage in not_null_percentage.items():
 
 st.markdown(f""" ##### Look at data""")
 st.dataframe(data.tail(5))
-
-# Data types of each column
-st.write("##### Data Types of Columns")
-
-# Convert data types to string to avoid serialization issues
-data_types = data.dtypes.astype(str).value_counts()
-
-# Plotly bar plot for data types
-fig_data_types = px.bar(
-    data_types,
-    x=data_types.index,
-    y=data_types.values,
-    labels={'x': 'Data Type', 'y': 'Count of Columns'},
-    title='Data Types of Columns',
-    text=data_types.values
-)
-
-# Adjust figure
-fig_data_types.update_layout(
-    xaxis=dict(
-        tickangle=0,
-        tickfont=dict(size=xtick_size),  # Rotate x-tick values and set font size
-        title=dict(text='Data Type', font=dict(size=xlabel_size))  # Set x-axis title and size
-    ),
-    yaxis=dict(
-        tickfont=dict(size=ytick_size),  # Set y-tick font size
-        title=dict(text='Count of Columns', font=dict(size=ylabel_size))  # Set y-axis title and size
-    ),
-    width=640,
-    height=480
-)
-
-# Display the plot
-st.plotly_chart(fig_data_types)
-
-# Non-null counts per column
-st.write("##### Non-Null Entries per Column")
-non_null_counts = data.notnull().sum()
-
-# Plotly bar plot for non-null counts
-fig_non_null = px.bar(
-    non_null_counts,
-    x=non_null_counts.index,
-    y=non_null_counts.values,
-    labels={'x': 'Column', 'y': 'Non-Null Count'},
-    title='Non-Null Entries per Column',
-    text=non_null_counts.values
-)
-
-# Adjust figure
-fig_non_null.update_layout(
-    xaxis=dict(
-        tickangle=75,
-        tickfont=dict(size=xtick_size),  # Rotate x-tick values and set font size
-        title=dict(text='Column', font=dict(size=xlabel_size))  # Set x-axis title and size
-    ),
-    yaxis=dict(
-        tickfont=dict(size=ytick_size),  # Set y-tick font size
-        title=dict(text='Non-Null Count', font=dict(size=ylabel_size))  # Set y-axis title and size
-    ),
-    width=width,
-    height=height
-)
-
-# Display the plot
-st.plotly_chart(fig_non_null)
 
 # Describe Possible Goals
 st.markdown(f""" #### What are questions that can be addressed using this data?
